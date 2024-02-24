@@ -32,7 +32,7 @@ const Credits = async () => {
                   {plan.name}
                 </p>
                 <p className="h1-semibold text-dark-600">${plan.price}</p>
-                <p className="p-16-regular">{plan.credits} Credits</p>
+                <p className="p-16-regular">{Math.round(plan.credits)} Credits</p>
               </div>
 
               {/* Inclusions */}
