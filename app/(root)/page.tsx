@@ -2,6 +2,7 @@ import { Collection } from '@/components/shared/Collection'
 import { columns } from '@/components/shared/Columns';
 import { getAllTranscriptions } from '@/lib/actions/transcription.action';
 import { SearchParamProps } from '@/types';
+import { SignedIn } from '@clerk/nextjs';
 import React from 'react'
 
 const Home = async () => {
@@ -12,9 +13,13 @@ const Home = async () => {
   return (
     <>
       <section className="sm:mt-12">
-        {/* <Collection 
+        <SignedIn>
+        <Collection 
           transcriptions={transcriptions?.data}
-        /> */}
+        />
+
+        </SignedIn>
+        
       </section>
     </>
   )
