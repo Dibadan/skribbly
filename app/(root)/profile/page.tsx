@@ -34,7 +34,7 @@ const Profile = async () => {
               height={50}
               className="size-9 md:size-12"
             />
-            <h2 className="h2-bold text-dark-600">{user.creditBalance}</h2>
+            <h2 className="h2-bold text-dark-600">{Math.round(user.creditBalance)}</h2>
           </div>
         </div>
 
