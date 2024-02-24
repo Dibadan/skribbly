@@ -1,22 +1,24 @@
 import { Schema, model, models, Document } from "mongoose";
 
 export interface ITranscription extends Document {
-    audioFile: string;
-    minutes: number;
-    name: string;
-    status: "transcribing" | "completed";
-    transcript: string;
-    creationDate: Date;
-    creator: {
-        _id:string;
-        firstName:string;
-        lastName:string;
-    }
+  publicId: string;
+  secureURL: string; 
+  author: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+  }
+  name:string;
+  transcript:string;
+  minutes:number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  status:string;
   }
   
 
 const TranscriptionSchema = new Schema({
-    audioFile: {
+    secureURL: {
       type: String,
       required: true
     },

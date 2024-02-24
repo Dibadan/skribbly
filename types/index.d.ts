@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import { ITranscription } from "@/lib/database/models/transcription.model";
+
 // ====== USER PARAMS
 declare type CreateUserParams = {
     clerkId: string;
@@ -18,41 +20,25 @@ declare type CreateUserParams = {
   };
   
   // ====== IMAGE PARAMS
-  declare type AddImageParams = {
-    image: {
-      title: string;
-      publicId: string;
-      transformationType: string;
-      width: number;
-      height: number;
-      config: any;
-      secureURL: string;
-      transformationURL: string;
-      aspectRatio: string | undefined;
-      prompt: string | undefined;
-      color: string | undefined;
+  declare type AddLessonParams = {
+    lesson: {
+      publicId: string | undefined;
+      secureURL: string | undefined;
+      minutes: number;
+      name: string;
+      transcript: string;
     };
     userId: string;
     path: string;
   };
   
-  declare type UpdateImageParams = {
-    image: {
+  declare type UpdateTranscriptionParams = {
+    transcription: {
       _id: string;
-      title: string;
-      publicId: string;
-      transformationType: string;
-      width: number;
-      height: number;
-      config: any;
-      secureURL: string;
-      transformationURL: string;
-      aspectRatio: string | undefined;
-      prompt: string | undefined;
-      color: string | undefined;
+      transcript: string;
+      status:string;
     };
     userId: string;
-    path: string;
   };
   
   declare type Transformations = {
@@ -114,25 +100,13 @@ declare type CreateUserParams = {
   };
   
   declare type SearchParamProps = {
-    params: { id: string; type: TransformationTypeKey };
-    searchParams: { [key: string]: string | string[] | undefined };
+    params: { id: string; };
   };
   
-  declare type TransformationFormProps = {
-    action: "Add" | "Update";
+  declare type TranscriptionFormProps = {
+    action: "Add";
     userId: string;
-    type: TransformationTypeKey;
     creditBalance: number;
-    data?: IImage | null;
-    config?: Transformations | null;
+    data?: ITranscription | null;
   };
   
-  declare type TransformedImageProps = {
-    image: any;
-    type: string;
-    title: string;
-    transformationConfig: Transformations | null;
-    isTransforming: boolean;
-    hasDownload?: boolean;
-    setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
-  };

@@ -1,10 +1,22 @@
+import { Collection } from '@/components/shared/Collection'
+import { columns } from '@/components/shared/Columns';
+import { getAllTranscriptions } from '@/lib/actions/transcription.action';
+import { SearchParamProps } from '@/types';
 import React from 'react'
 
-const Home = () => {
+const Home = async () => {
+
+
+
+  const transcriptions = await getAllTranscriptions();
   return (
-    <div>
-      <p>Home</p>
-    </div>
+    <>
+      <section className="sm:mt-12">
+        <Collection 
+          transcriptions={transcriptions?.data}
+        />
+      </section>
+    </>
   )
 }
 
