@@ -12,9 +12,9 @@ const Home = async () => {
   return (
     <>
       <section className="sm:mt-12">
-        <Collection 
+        {/* <Collection 
           transcriptions={transcriptions?.data}
-        />
+        /> */}
       </section>
     </>
   )
