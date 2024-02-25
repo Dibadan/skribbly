@@ -58,9 +58,7 @@ const Home = () => {
     fetchTranscriptions();
   }, []);
 
-  if (!transcriptions) {
-    return <div>Loading...</div>; // You might want to show a loading indicator while fetching data
-  }
+  
 
   return (
     <>

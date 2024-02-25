@@ -42,8 +42,8 @@ const Profile = async () => {
           <p className="p-14-medium md:p-16-medium">TRANSCRIPTIONS DONE</p>
           <div className="mt-4 flex items-center gap-4">
             <Image
-              src="/assets/icons/photo.svg"
-              alt="coins"
+              src="/assets/icons/voice.png"
+              alt="transcriptions done"
               width={50}
               height={50}
               className="size-9 md:size-12"
