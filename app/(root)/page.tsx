@@ -41,11 +41,12 @@ const Home = () => {
   const router = useRouter()
 
   const { userId } = useAuth();
-  if (!userId) redirect("/sign-in");
+  
 
   useEffect(() => {
     const fetchTranscriptions = async () => {
       try {
+        if (!userId) redirect("/");
         const user = await getUserById(userId);
         const result = await getAllTranscriptions(user._id);
         setTranscriptions(result?.data);
@@ -77,9 +78,7 @@ const Home = () => {
                 <button onClick={() => router.push('/sign-up')} className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-full text-lg font-semibold shadow-md" style={{ backgroundColor: "#EA750F" }}>Get Started</button>
               </div>
             </div>
-
-
-
+            
           </section>
         </SignedOut>
       </section>

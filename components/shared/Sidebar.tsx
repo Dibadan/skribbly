@@ -17,7 +17,6 @@ const Sidebar = () => {
     <aside className='sidebar'>
         <div className='flex size-full flex-col gap-4'>
             <Link href="/" className='sidebar-logo'>
-                
                 <h1 className='skribbly-title'>Skribbly</h1>
             </Link>
 
