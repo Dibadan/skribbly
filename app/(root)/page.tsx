@@ -64,7 +64,10 @@ const Home = () => {
     <>
       <section className="sm:mt-12">
         <SignedIn>
-          <Collection transcriptions={transcriptions} />
+          {
+            transcriptions ? <Collection transcriptions={transcriptions} /> : <div>Loading...</div>
+          }
+          
         </SignedIn>
         <SignedOut>
           <section className="sm:mt-12">
