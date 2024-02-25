@@ -7,7 +7,7 @@ import Transcription from "../database/models/transcription.model";
 import { AddLessonParams, UpdateTranscriptionParams } from "@/types";
 import { revalidatePath } from "next/cache";
 const { createClient } = require("@deepgram/sdk");
-
+import {Types} from "mongoose"
 
 const populateUser = (query: any) => query.populate({
   path: 'creator',
@@ -91,13 +91,12 @@ export async function getLessonById(lessonId: string) {
 
 
 // GET TRANSCRIPTIONS
-export async function getAllTranscriptions() {
+export async function getAllTranscriptions(creatorId:string) {
   try {
 
     await connectToDatabase();
 
-    const transcriptions = await Transcription.find({});
-
+    const transcriptions = await Transcription.find({"creator" : creatorId});
     if (!transcriptions) throw new Error("No transcription found!");
 
     return {

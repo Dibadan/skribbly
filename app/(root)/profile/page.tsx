@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs";
-import Image from "next/image";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 
-import { Collection } from "@/components/shared/Collection";
+
 import Header from "@/components/shared/Header";
 import { getUserById } from "@/lib/actions/user.actions";
 import { getAllTranscriptions } from "@/lib/actions/transcription.action";
@@ -14,7 +14,9 @@ const Profile = async () => {
 
   const user = await getUserById(userId);
 
-  const transcriptions = await getAllTranscriptions();
+
+
+  const transcriptions = await getAllTranscriptions(user._id);
   
 
   return (

@@ -7,7 +7,7 @@ export const navLinks = [
     {
       label: "Transcriptions",
       route: "/transcriptions/add",
-      icon: "/assets/icons/image.svg",
+      icon: "/assets/icons/voice.png",
     },
     {
       label: "Profile",
