@@ -102,12 +102,14 @@
 
 import Link from "next/link";
 import { ITranscription } from "@/lib/database/models/transcription.model";
+import { useRouter } from 'next/navigation'
 
 export const Collection = ({
   transcriptions
 }: {
   transcriptions: ITranscription[];
 }) => {
+  
   return (
     <>
       <div className="collection-heading">
@@ -127,19 +129,25 @@ export const Collection = ({
 
 const Card = ({ transcription }: { transcription: ITranscription }) => {
   const isCompleted = transcription.status === "Completed";
-
+  const router = useRouter()
   return (
     <div className={`collection-card ${isCompleted ? 'clickable' : ''}`}>
       {isCompleted ? (
-        <Link href={`/transcriptions/${transcription._id}`}>
+        // <Link href={`/transcriptions/${transcription._id}`}>
 
-            <div className="flex flex-col">
+        //     <div className="flex flex-col">
+        //       <p>Name: {transcription.name}</p>
+        //       <p>Duration: {transcription.minutes} minute</p>
+        //       <p>Status: {transcription.status}</p>
+        //     </div>
+          
+        // </Link>
+        <div onClick={() => router.push(`/transcriptions/${transcription._id}`)}  className="flex flex-col">
               <p>Name: {transcription.name}</p>
               <p>Duration: {transcription.minutes} minute</p>
               <p>Status: {transcription.status}</p>
             </div>
-          
-        </Link>
+        
       ) : (
         <div className="flex flex-col">
           <p>Name: {transcription.name}</p>
