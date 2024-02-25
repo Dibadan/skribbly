@@ -30,7 +30,7 @@ const Sidebar = () => {
                             return(
                                 <li key={link.route} className={`sidebar-nav_element group 
                                 ${isActive ? 'bg-orange-gradient text-white' : 'text-gray-700' }`}>
-                                    <Link href={link.route} className='sidebar-link'>
+                                    <Link prefetch={false} href={link.route} className='sidebar-link'>
                                         <Image src={link.icon} alt='logo' width={24} height={24} className={
                                             `${isActive && 'brightness-200'}`
                                         }/>
