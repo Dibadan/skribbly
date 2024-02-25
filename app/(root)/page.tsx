@@ -38,6 +38,7 @@ import { getUserById } from '@/lib/actions/user.actions';
 
 const Home = () => {
   const [transcriptions, setTranscriptions] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter()
 
   const { userId } = useAuth();
@@ -50,6 +51,7 @@ const Home = () => {
         const user = await getUserById(userId);
         const result = await getAllTranscriptions(user._id);
         setTranscriptions(result?.data);
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching transcriptions:', error);
       }
@@ -65,7 +67,7 @@ const Home = () => {
       <section className="sm:mt-12">
         <SignedIn>
           {
-            transcriptions ? <Collection transcriptions={transcriptions} /> : <div>Loading...</div>
+            !loading ? <Collection transcriptions={transcriptions} /> : <div>Loading...</div>
           }
           
         </SignedIn>
