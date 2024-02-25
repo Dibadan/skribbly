@@ -1,7 +1,5 @@
 import { Collection } from '@/components/shared/Collection'
-import { columns } from '@/components/shared/Columns';
 import { getAllTranscriptions } from '@/lib/actions/transcription.action';
-import { SearchParamProps } from '@/types';
 import { SignedIn } from '@clerk/nextjs';
 import React from 'react'
 

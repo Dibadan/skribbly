@@ -6,7 +6,6 @@ import User from "../database/models/user.model";
 import Transcription from "../database/models/transcription.model";
 import { AddLessonParams, UpdateTranscriptionParams } from "@/types";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 const { createClient } = require("@deepgram/sdk");
 
 
@@ -23,7 +22,6 @@ export async function addLesson({ lesson, userId, path }: AddLessonParams) {
 
     const author = await User.findById(userId);
 
-    console.log("AUTHOR = ", author)
 
     if (!author) {
       throw new Error("User not found");
@@ -46,15 +44,11 @@ export async function addLesson({ lesson, userId, path }: AddLessonParams) {
 export async function updateTranscription({ transcription, userId }: UpdateTranscriptionParams) {
   try {
     await connectToDatabase();
-    console.log("TID = ", transcription._id)
     const transcriptionToUpdate = await Transcription.findById(transcription._id);
 
-    console.log("TTU = ", transcriptionToUpdate)
 
     const creatorID = transcriptionToUpdate.creator.toString();
-    console.log("CREATOR ID = ", creatorID);
-    console.log("USERID = ", userId)
-    console.log(creatorID!==userId)
+  
 
     if (!transcriptionToUpdate || creatorID !== userId) {
       throw new Error("Unauthorized or transcription not found");
@@ -66,7 +60,7 @@ export async function updateTranscription({ transcription, userId }: UpdateTrans
       { new: true }
     )
 
-    console.log("UPTRANS (63)", updatedTranscription)
+
 
     //revalidatePath(path);
 
@@ -128,7 +122,6 @@ const transcribeUrl = async (secureURL?: String) => {
     }
   );
 
-  console.log("RES = ", result)
 
   if (error) throw error;
   if (!error) return result;
@@ -141,26 +134,18 @@ export async function transcribeLesson(transcription_id: string, userId: string,
 
     await connectToDatabase();
 
-    console.log("SEC URL = ", secureURL)
     const transcript = await transcribeUrl(secureURL);
-
-    console.log("TRANSCRIPT = (140)", transcript)
     
 
-    if (transcript) {
-      //console.log("TRanscript = ", transcript.results.channels[0].alternatives[0].transcript)
+    if (transcript.results.channels[0].alternatives[0].transcript !== '') {
       const lesson_transcript = transcript.results.channels[0].alternatives[0].transcript;
-      console.log("LT = ", lesson_transcript)
       const transcription = {
         _id: transcription_id,
         transcript: lesson_transcript,
         status: "Completed"
       }
-
-      console.log("TRANS = (155)", transcription)
       
       const res = await updateTranscription({transcription, userId})
-      console.log("RES (156) = ", res)
       return JSON.parse(JSON.stringify(transcription));
       
     }

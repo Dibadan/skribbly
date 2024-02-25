@@ -16,8 +16,6 @@ const Profile = async () => {
 
   const transcriptions = await getAllTranscriptions();
   
-  console.log("TT = ", transcriptions?.data)
-  
 
   return (
     <>
@@ -25,7 +23,7 @@ const Profile = async () => {
 
       <section className="profile">
         <div className="profile-balance">
-          <p className="p-14-medium md:p-16-medium">CREDITS AVAILABLE ( 1 credit = 1 second )</p>
+          <p className="p-14-medium md:p-16-medium">CREDITS AVAILABLE ( 1 credit = 1 minute )</p>
           <div className="mt-4 flex items-center gap-4">
             <Image
               src="/assets/icons/coins.svg"

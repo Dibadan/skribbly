@@ -8,7 +8,7 @@ const Root = ({children}: {children:React.ReactNode}) => {
         <main className='root'>
             <Sidebar/>
             <Mobilenav/>
-            <div className='root-container'>
+            <div className='root-container bg-customBackground'>
                 <div className='wrapper'>
                     {children}    
                 </div>    

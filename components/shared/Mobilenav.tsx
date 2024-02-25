@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import {Sheet,SheetContent,SheetTrigger} from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Link from 'next/link'
 import Image from 'next/image'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
@@ -16,7 +16,7 @@ const Mobilenav = () => {
     return (
         <header className='header'>
             <Link href="/" className='flex items-center gap-2 md:py-2'>
-                <Image src="/assets/images/logo-text.svg" alt='logo' width={180} height={280} />
+                <h1 className='skribbly-title'>Skribbly</h1>
             </Link>
 
             <nav className='flex gap-2'>
@@ -28,7 +28,7 @@ const Mobilenav = () => {
                         </SheetTrigger>
                         <SheetContent className='sheet-content sm:w-64'>
                             <>
-                                <Image src="/assets/images/logo-text.svg" alt='logo' width={152} height={23} />
+                                <h1 className='skribbly-title'>Skribbly</h1>
                                 <ul className='header-nav_elements'>
                                     {navLinks.map((link) => {
                                         const isActive = link.route === pathname
@@ -37,7 +37,7 @@ const Mobilenav = () => {
                                             <li key={link.route} className={` 
                                 ${isActive && 'gradient-text'}p-18 flex whitespace-nowrap text-dark-700`}>
                                                 <Link href={link.route} className='sidebar-link cursor-pointer'>
-                                                    <Image src={link.icon} alt='logo' width={24} height={24}  />
+                                                    <Image src={link.icon} alt='logo' width={24} height={24} />
                                                     {link.label}
                                                 </Link>
                                             </li>
@@ -51,7 +51,7 @@ const Mobilenav = () => {
                 </SignedIn>
 
                 <SignedOut>
-                    <Button asChild className='button bg-purple-gradient bg-cover'>
+                    <Button asChild className='button bg-orange-gradient bg-cover'>
                         <Link href="sign-in">Login</Link>
                     </Button>
                 </SignedOut>
