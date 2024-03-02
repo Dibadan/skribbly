@@ -8,6 +8,7 @@ import { AddLessonParams, UpdateTranscriptionParams } from "@/types";
 import { revalidatePath } from "next/cache";
 const { createClient } = require("@deepgram/sdk");
 import {Types} from "mongoose"
+import { getUserById } from "./user.actions";
 
 const populateUser = (query: any) => query.populate({
   path: 'creator',
@@ -107,8 +108,12 @@ export async function getAllTranscriptions(creatorId:string) {
   }
 }
 
-const transcribeUrl = async (secureURL?: String) => {
-  const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
+const transcribeUrl = async (userId: string, secureURL?: String) => {
+
+  const user = await getUserById(userId);
+  const userApiKey = user.apiKey;
+
+  const deepgram = createClient(userApiKey);
 
   const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
     {
@@ -133,7 +138,7 @@ export async function transcribeLesson(transcription_id: string, userId: string,
 
     await connectToDatabase();
 
-    const transcript = await transcribeUrl(secureURL);
+    const transcript = await transcribeUrl(userId, secureURL);
     
 
     if (transcript.results.channels[0].alternatives[0].transcript !== '') {

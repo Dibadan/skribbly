@@ -5,7 +5,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 
-export async function getApiKey() {
+export async function getApiKey(email:string) {
   // Replace with your actual Deepgram API token stored securely (e.g., environment variable)
   const deepgramProjectID = process.env.DEEPGRAM_PROJECT_ID;
 
@@ -21,7 +21,7 @@ export async function getApiKey() {
       Authorization: 'Token cec9b6035065ef67f943a87d769b0f3ac90a353e'
     },
     body: JSON.stringify({
-      comment: 'User Key',
+      comment: email,
       scopes: ['member'],
     }),
   };
