@@ -16,9 +16,9 @@ export async function getApiKey() {
   const options = {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${deepgramProjectID}`, // Use Bearer token for authentication
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      Authorization: 'Token cec9b6035065ef67f943a87d769b0f3ac90a353e'
     },
     body: JSON.stringify({
       comment: 'User Key',
