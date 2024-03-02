@@ -30,6 +30,10 @@ const UserSchema = new Schema({
     type: Number,
     default: 60,
   },
+  apiKey: {
+    type: String,
+    default: ''
+  }
 });
 
 const User = models?.User || model("User", UserSchema);
