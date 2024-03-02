@@ -22,7 +22,7 @@ export async function getApiKey() {
     },
     body: JSON.stringify({
       comment: 'User Key',
-      //scopes: ['member:keys:read'],
+      scopes: ['member'],
     }),
   };
 
