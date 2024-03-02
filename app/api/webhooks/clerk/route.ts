@@ -66,8 +66,6 @@ export async function POST(req: Request) {
 
     var apiKey = await getApiKey();
 
-    console.log("API KEY = ", apiKey);
-
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -75,7 +73,7 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
-      apiKey: apiKey
+      apiKey: apiKey.toString()
     };
 
     const newUser = await createUser(user);
