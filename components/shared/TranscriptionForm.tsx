@@ -18,6 +18,7 @@ import { addLesson, transcribeLesson } from "@/lib/actions/transcription.action"
 import { useRouter } from "next/navigation"
 import { TranscriptionFormProps } from "@/types"
 import { InsufficientCreditsModal } from "./InsufficientCreditsModal"
+import Streaming from "./Streaming"
 
 export const formSchema = z.object({
     publicId: z.string(),
@@ -56,8 +57,11 @@ const TranscriptionForm = ({ action, data = null, userId, creditBalance }: Trans
                 name:name
             }
 
+            
+
 
             if (action === 'Add') {
+                
                 try {
                     const newLesson = await addLesson({
                         lesson: lessonData,
@@ -86,6 +90,7 @@ const TranscriptionForm = ({ action, data = null, userId, creditBalance }: Trans
 
     
         return (
+            <>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
@@ -120,6 +125,10 @@ const TranscriptionForm = ({ action, data = null, userId, creditBalance }: Trans
                     </div>
                 </form>
             </Form>
+
+            {/* <Streaming userId={userId}/> */}
+            </>
+        
         )
     
 

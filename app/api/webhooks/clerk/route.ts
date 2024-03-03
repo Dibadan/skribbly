@@ -67,6 +67,7 @@ export async function POST(req: Request) {
     var apiKey = await getApiKey(email_addresses[0].email_address);
 
 
+    if(apiKey === '') return new Response("Unable to get your key!", { status: 400 }); 
 
     const user = {
       clerkId: id,
@@ -75,7 +76,7 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
-      apiKey: apiKey.toString()
+      apiKey: apiKey
     };
 
     const newUser = await createUser(user);
@@ -85,6 +86,7 @@ export async function POST(req: Request) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,
+          apiKey: apiKey
         },
       });
     }
@@ -102,7 +104,6 @@ export async function POST(req: Request) {
       lastName: last_name,
       username: username!,
       photo: image_url,
-      apiKey: ''
     };
 
     const updatedUser = await updateUser(id, user);

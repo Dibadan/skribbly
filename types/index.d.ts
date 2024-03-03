@@ -18,7 +18,6 @@ declare type CreateUserParams = {
     lastName: string;
     username: string;
     photo: string;
-    apiKey: string;
   };
   
   // ====== IMAGE PARAMS
@@ -111,4 +110,8 @@ declare type CreateUserParams = {
     creditBalance: number;
     data?: ITranscription | null;
   };
+
+  declare type apiKey = {
+    key:string;
+  }
   
