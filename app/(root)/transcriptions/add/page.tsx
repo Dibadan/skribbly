@@ -20,7 +20,7 @@ const AddTranscriptionTypePage = async () => {
       <section className="mt-10">
         <TranscriptionForm 
           action="Add"
-          userId={user._id}
+          userId={user.clerkId}
           creditBalance={user.creditBalance}
         />
       </section>
