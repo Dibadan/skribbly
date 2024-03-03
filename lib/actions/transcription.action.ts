@@ -113,6 +113,8 @@ const transcribeUrl = async (userId: string, secureURL?: String) => {
   const user = await getUserById(userId);
   const userApiKey = user.apiKey;
 
+  console.log("AP = ", userApiKey);
+
   const deepgram = createClient(userApiKey);
 
   const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
